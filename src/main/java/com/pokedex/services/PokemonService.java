@@ -26,10 +26,16 @@ public class PokemonService {
         return Optional.ofNullable(pokemonRepository.findByPokemon(pokemon));
     }
 
-    public Optional<Pokemon> deletePokemonById(int pokemon) {
+    public Optional<Pokemon> deletePokemonByPokemon(int pokemon) {
         Optional<Pokemon> tempPokemon = findPokemonByPokemon(pokemon);
         Long tempId = (long) tempPokemon.get().getId();
         pokemonRepository.deleteById(tempId);
         return tempPokemon;
+    }
+
+    public Optional<Pokemon> deletePokemonById(Long id) {
+        Optional<Pokemon> pok = pokemonRepository.findById(id);
+        pokemonRepository.deleteById(id);
+        return pok;
     }
 }
