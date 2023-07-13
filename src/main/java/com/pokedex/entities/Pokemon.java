@@ -14,4 +14,8 @@ public class Pokemon {
 
     @Getter @Setter
     int pokemon;
+
+    @Getter @Setter
+    private int id_user;
+
 }

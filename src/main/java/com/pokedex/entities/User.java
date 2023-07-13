@@ -27,7 +27,7 @@ public class User {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_authority",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
