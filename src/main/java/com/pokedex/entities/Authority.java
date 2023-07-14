@@ -23,4 +23,6 @@ public class Authority {
     private AuthorityName name;
 
 
+    public Authority(String write) {
+    }
 }

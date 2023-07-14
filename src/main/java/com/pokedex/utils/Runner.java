@@ -36,10 +36,10 @@ public class Runner implements CommandLineRunner {
 
         if (this.userRepository.count() == 0) {
             this.userRepository.saveAll(List.of(
-                    new User("usuario1", new BCryptPasswordEncoder().encode("password1"), List.of(this.authorityRepository.findByName(AuthorityName.READ).get())),
-                    new User("usuario2", new BCryptPasswordEncoder().encode("password2"), List.of(this.authorityRepository.findByName(AuthorityName.READ).get())),
-                    new User("usuario3", new BCryptPasswordEncoder().encode("password3"), List.of(this.authorityRepository.findByName(AuthorityName.WRITE).get())),
-                    new User("usuario4", new BCryptPasswordEncoder().encode("password4"), List.of(this.authorityRepository.findByName(AuthorityName.WRITE).get()))
+                    new User("usuario1", new BCryptPasswordEncoder().encode("password1"), "user@gmail.com", List.of(this.authorityRepository.findByName(AuthorityName.READ).get())),
+                    new User("usuario2", new BCryptPasswordEncoder().encode("password2"), "user@gmail.com",  List.of(this.authorityRepository.findByName(AuthorityName.READ).get())),
+                    new User("usuario3", new BCryptPasswordEncoder().encode("password3"), "user@gmail.com", List.of(this.authorityRepository.findByName(AuthorityName.WRITE).get())),
+                    new User("usuario4", new BCryptPasswordEncoder().encode("password4"), "user@gmail.com", List.of(this.authorityRepository.findByName(AuthorityName.WRITE).get()))
             ));
         }
     }

@@ -13,9 +13,10 @@ import java.util.List;
 @Entity(name = "users")
 public class User {
 
-    public User(String username, String password, List<Authority> authorities) {
+    public User(String username, String password, String email, List<Authority> authorities) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.authorities = authorities;
     }
 
@@ -26,6 +27,8 @@ public class User {
     private String username;
 
     private String password;
+
+    public String email;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
