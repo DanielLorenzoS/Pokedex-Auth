@@ -75,6 +75,14 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding> <!-- Cambia la codificación según corresponda -->
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
