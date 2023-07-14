@@ -4,6 +4,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
@@ -20,9 +21,11 @@ public class EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
+
     public int randomNumber = 0;
 
     public void sendSimpleMessage(String email) throws MessagingException, MessagingException {
+
         Random random = new Random();
         randomNumber = random.nextInt(90000000) + 10000000;
 
