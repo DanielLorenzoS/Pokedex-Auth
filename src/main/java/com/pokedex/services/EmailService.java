@@ -1,15 +1,17 @@
 package com.pokedex.services;
 
 import jakarta.mail.MessagingException;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.util.Properties;
 import java.util.Random;
 
 @Service
@@ -21,7 +23,6 @@ public class EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
-
     public int randomNumber = 0;
 
     public void sendSimpleMessage(String email) throws MessagingException, MessagingException {
@@ -32,7 +33,7 @@ public class EmailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        helper.setFrom("no-reply@example.com");
+        helper.setFrom(email);
         helper.setTo(email);
         helper.setSubject("Aquí tienes tu token de acceso");
 
