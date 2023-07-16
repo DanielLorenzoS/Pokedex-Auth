@@ -1,10 +1,12 @@
 package com.pokedex.controllers;
 
+
 import com.pokedex.entities.User;
 import com.pokedex.services.EmailService;
 import com.pokedex.services.UserService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +38,11 @@ public class UserController {
         return userService.getUserByUsername(username);
     }
 
+    @GetMapping("/username/email/{email}")
+    public Optional<User> getUserByEmail(@PathVariable("email") String email) {
+        return userService.getUserByEmail(email);
+    }
+
     @PostMapping("/user")
     public User addUser(@RequestBody User user) throws MessagingException {
         emailService.sendSimpleMessage(user.getEmail());
@@ -57,4 +64,21 @@ public class UserController {
     public Optional<User> tokenEmail(@PathVariable("id") int id,@PathVariable("key") int key) {
         return userService.getTokenEmail(key, id);
     }
+
+    @PutMapping("/user/{id}/{newPassword}")
+    public ResponseEntity<Boolean> updateUserPassword(@PathVariable("id") int id, @PathVariable("newPassword") String newPassword) {
+        return ResponseEntity.ok(userService.updateUserPassword(id, newPassword));
+    }
+
+    @GetMapping("/password/{email}")
+    public ResponseEntity<String> updatePasswordUser(@PathVariable("email") String email) throws MessagingException {
+        emailService.sendPasswordRecover(email);
+        return ResponseEntity.ok("Correo enviado");
+    }
+
+    @GetMapping("/validate/{token}")
+    public ResponseEntity<Boolean> getTokenPassword(@PathVariable("token") int token) {
+        return ResponseEntity.ok(userService.getTokenPassword(token));
+    }
+
 }

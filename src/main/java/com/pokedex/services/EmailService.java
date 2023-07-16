@@ -26,6 +26,7 @@ public class EmailService {
     private TemplateEngine templateEngine;
 
     public int randomNumber = 0;
+    public int passwordRandomNumber = 0;
 
     public void sendSimpleMessage(String email) throws MessagingException, MessagingException {
 
@@ -49,9 +50,9 @@ public class EmailService {
         javaMailSender.send(message);
     }
 
-    public void sendPasswordRecover(String email) throws MessagingException, MessagingException {
+    public void sendPasswordRecover(String email) throws MessagingException {
         Random random = new Random();
-        randomNumber = random.nextInt(90000000) + 10000000;
+        passwordRandomNumber = random.nextInt(90000000) + 10000000;
 
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
@@ -61,7 +62,7 @@ public class EmailService {
         helper.setSubject("Aquí tienes tu token de acceso");
 
         Context context = new Context();
-        context.setVariable("variable", randomNumber);
+        context.setVariable("variable", passwordRandomNumber);
 
         String htmlContent = templateEngine.process("password.html", context);
 
